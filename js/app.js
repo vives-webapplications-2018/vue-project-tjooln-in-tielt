@@ -148,6 +148,8 @@ var websocketclient = {
         message.qos = qos;
         message.retained = retain;
         this.client.send(message);
+        websocketclient.render.hide('usrname');
+        websocketclient.render.hide('sub');
     },
 
     'subscribe': function(topic, qosNr, color) {
