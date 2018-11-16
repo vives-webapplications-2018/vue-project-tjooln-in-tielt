@@ -134,22 +134,25 @@ var websocketclient = {
 
     'publish': function(topic, name, payload, qos, retain) {
 
-        if (!websocketclient.connected) {
-            websocketclient.render.showError("Not connected");
-            return false;
+        if (payload.charAt(0) != ' ' && payload != '') {
+            if (!websocketclient.connected) {
+                websocketclient.render.showError("Not connected");
+                return false;
+            }
+
+            if (name == '') {
+                name = 'Guest'
+            }
+
+            var message = new Messaging.Message(name + ": " + payload);
+            message.destinationName = topic;
+            message.qos = qos;
+            message.retained = retain;
+            this.client.send(message);
+            websocketclient.render.hide('usrname');
+            websocketclient.render.hide('sub');
         }
 
-        if (name == '') {
-            name = 'Guest'
-        }
-
-        var message = new Messaging.Message(name + ": " + payload);
-        message.destinationName = topic;
-        message.qos = qos;
-        message.retained = retain;
-        this.client.send(message);
-        websocketclient.render.hide('usrname');
-        websocketclient.render.hide('sub');
     },
 
     'subscribe': function(topic, qosNr, color) {
