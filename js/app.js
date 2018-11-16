@@ -139,6 +139,10 @@ var websocketclient = {
             return false;
         }
 
+        if (name == '') {
+            name = 'Guest'
+        }
+
         var message = new Messaging.Message(name + ": " + payload);
         message.destinationName = topic;
         message.qos = qos;
