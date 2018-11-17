@@ -43,3 +43,8 @@ exports.insert = function(values) {                     //expects an object with
   
     exports.query(query);
   };
+
+  exports.delete = function(id) {                       //expects an integer id that refers to the table entry that will be deleted
+    exports.query("DELETE FROM " + tableName + " where id = " + id);
+    console.log('deleted entry ' + id + ' from ' + tableName); 
+  };
