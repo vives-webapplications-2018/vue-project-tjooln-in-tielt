@@ -8,6 +8,10 @@ var pool = mysql.createPool({                           //creates pool with give
   database: 'scribble'
 });
 
+exports.setTable = function(table) {                    //expects string table, changes the currently used table
+    tableName = table;
+  };
+
 exports.query = function(query) {                       //expects a valid mysql query in string format
   pool.getConnection(function (err, connection) {
     connection.query(query, function (err, rows) {
