@@ -48,3 +48,8 @@ exports.insert = function(values) {                     //expects an object with
     exports.query("DELETE FROM " + tableName + " where id = " + id);
     console.log('deleted entry ' + id + ' from ' + tableName); 
   };
+
+  exports.wipe = function() {                         //wipes all the entries in the table
+    exports.query("DELETE FROM " + tableName);
+    console.log('wiped table ' + tableName); 
+  };
