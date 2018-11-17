@@ -17,3 +17,29 @@ exports.query = function(query) {                       //expects a valid mysql 
     });
   });
 };
+
+exports.insert = function(values) {                     //expects an object with key value pairs where each key corresponds to the name of the column
+    var queryStart = 'INSERT INTO ' + tableName + ' (';
+    var queryEnd =  ') VALUES (';
+  
+    for (let [key,value,index] of Object.entries(values)) {
+  
+      queryStart = queryStart.concat(key);
+      if (typeof value == "string") {
+        queryEnd = queryEnd.concat('"' + value + '"');
+      } else {
+        queryEnd = queryEnd.concat(value);
+      }
+  
+      if (index != values.length) {
+        queryStart = queryStart.concat(',');
+        queryEnd = queryEnd.concat(',');
+      } else {
+        queryEnd = queryEnd.concat(')');
+      }
+    }
+  
+    var query = queryStart + queryEnd;
+  
+    exports.query(query);
+  };
