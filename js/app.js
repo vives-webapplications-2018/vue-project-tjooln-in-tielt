@@ -29,7 +29,7 @@ var websocketclient = {
         var host = $('#urlInput').val();
         var port = parseInt($('#portInput').val(), 10);
         var clientId = $('#clientIdInput').val();
-        var username = $('#userInput').val();
+        var username = $('#usernameInput').val();
         var password = $('#pwInput').val();
         var keepAlive = parseInt($('#keepAliveInput').val());
         var cleanSession = $('#cleanSessionInput').is(':checked');
@@ -79,6 +79,7 @@ var websocketclient = {
         websocketclient.render.show('sub');
         websocketclient.render.show('messages');
         websocketclient.render.show('usrname');
+        websocketclient.render.hide('userInput');
     },
 
     'onFail': function(message) {
@@ -98,6 +99,7 @@ var websocketclient = {
         websocketclient.render.hide('sub');
         websocketclient.render.hide('messages');
         websocketclient.render.hide('usrname');
+        websocketclient.render.hide('userInput');
 
         //Cleanup messages
         websocketclient.messages = [];
@@ -151,6 +153,7 @@ var websocketclient = {
             this.client.send(message);
             websocketclient.render.hide('usrname');
             websocketclient.render.hide('sub');
+            websocketclient.render.show('userInput');
         }
 
     },
@@ -313,6 +316,7 @@ var websocketclient = {
             websocketclient.render.toggle('messages');
             websocketclient.render.toggle('sub');
             websocketclient.render.toggle('usrname');
+            websocketclient.render.toggle('userInput');
         },
 
         'toggle': function(name) {

@@ -88,7 +88,7 @@ limitations under the License.
 
                             <div class="hide" class="large-4 columns">
                                 <label>Username</label>
-                                <input id="userInput" type="text" />
+                                <input id="usernameInput" type="text" />
                             </div>
 
                             <div class="hide" class="large-3 columns">
@@ -302,6 +302,38 @@ limitations under the License.
                 </div>
             </div>
 
+            <div class="columns large-4">
+
+                <div class="large-8 columns userInputTop">
+                    <h3>Upload</h3>
+                </div>
+
+                <div class="large-3 columns userInputArrow">
+                    <a class="small bottom userInputArrow" onclick="websocketclient.render.toggle('userInput');">
+                        <div class="icon-arrow-chevron"></div>
+                    </a>
+                </div>
+                <div class="large-12 columns" id="userInputMain">
+                    <div class="row panel">
+                        <div class="large-12 columns">
+
+
+                            <div>
+                                <label>Send us your own pictures</label>
+                                <input id="userInputFile" type="file" />
+                                <label for="userInputWord">Matching word: </label>
+                                <input type="text" id="userInputWord">
+                                <a class="small button" id="uploadButton" onclick="">Upload</a>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -351,6 +383,7 @@ limitations under the License.
             websocketclient.render.toggle('messages');
             websocketclient.render.toggle('sub');
             websocketclient.render.toggle('usrname');
+            websocketclient.render.toggle('userInput');
         });
 
 
@@ -361,7 +394,6 @@ limitations under the License.
         function focusMessageBox() {
             document.getElementById('publishPayload').focus();
         }
-
 
         document.getElementById("publishPayload")
             .addEventListener("keyup", function(event) {

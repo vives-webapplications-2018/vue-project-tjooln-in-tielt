@@ -81,6 +81,11 @@
     width: 215px;
 }
 
+.userInputTop {
+    background-color: #f2f2f2;
+    width: 215px;
+}
+
 .messagesTop {
     background-color: #f2f2f2;
     width: 180px;
@@ -90,7 +95,8 @@ div.conniArrow,
 div.publishArrow,
 div.subArrow,
 div.messagesArrow,
-div.usrnameArrow {
+div.usrnameArrow,
+div.userInputArrow {
     float: right;
     text-align: right;
 }
@@ -121,29 +127,35 @@ div.usrnameArrow {
 }
 
 
-/*.subs0, .mess0{
+/* .subs0,
+.mess0 {
     border-left: solid 10px #ffff00;
     background-color: #ffffff;
 }
-.subs1, .mess1{
+
+.subs1,
+.mess1 {
     border-left: solid 10px #ff00ff;
     background-color: #ffffff;
 }
 
-.subs2, .mess2{
+.subs2,
+.mess2 {
     border-left: solid 10px #00ffff;
     background-color: #ffffff;
 }
 
-.subs3, .mess3{
+.subs3,
+.mess3 {
     border-left: solid 10px #f0fff0;
     background-color: #ffffff;
 }
 
-.subs4, .mess4{
+.subs4,
+.mess4 {
     border-left: solid 10px #ff0f0f;
     background-color: #ffffff;
-}*/
+} */
 
 .subText {
     border-style: solid;
@@ -194,7 +206,7 @@ div.usrnameArrow {
 
 #publishButton {
     margin-top: 17px;
-    margin-left: -10px;
+    margin-left: 5px;
 }
 
 #filterButton {
@@ -255,7 +267,8 @@ form.custom .custom.checkbox {
 .columns.subArrow,
 .columns.publishArrow,
 .columns.messagesArrow,
-.columns.usrnameArrow {
+.columns.usrnameArrow,
+.columns.userInputArrow {
     padding-right: 0;
 }
 
@@ -348,4 +361,8 @@ body.connectionbroke #connectionStatus:after {
 
 .break-words {
     word-wrap: break-word;
+}
+
+#userInputFile {
+    margin-left: 0px;
 }
