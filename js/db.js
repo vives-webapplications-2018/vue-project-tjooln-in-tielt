@@ -18,6 +18,8 @@ exports.query = function(query) {                       //expects a valid mysql 
         connection.release();
         if (err) throw err;
         console.log('query ' + query + ' sent');
+        console.log(rows);
+        return rows;
     });
   });
 };
@@ -49,11 +51,15 @@ exports.insert = function(values) {                     //expects an object with
   };
 
   exports.delete = function(id) {                       //expects an integer id that refers to the table entry that will be deleted
-    exports.query("DELETE FROM " + tableName + " where id = " + id);
+    exports.query("DELETE FROM " + tableName + " WHERE id = " + id);
     console.log('deleted entry ' + id + ' from ' + tableName); 
   };
 
-  exports.wipe = function() {                         //wipes all the entries in the table
+  exports.wipe = function() {                           //wipes all the entries in the table
     exports.query("DELETE FROM " + tableName);
     console.log('wiped table ' + tableName); 
+  };
+
+  exports.getRecord = function(id) {                   //expects an integer id, will return the record from the currently selected table that corresponds to this id
+    return exports.query("SELECT * FROM " + tableName + " WHERE id = " + id);
   };
