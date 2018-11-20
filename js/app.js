@@ -135,8 +135,7 @@ var websocketclient = {
     },
 
     'publish': function(topic, name, payload, qos, retain) {
-
-        if (payload.charAt(0) != ' ' && payload != '') {
+        if (payload.trim() != '') {
             if (!websocketclient.connected) {
                 websocketclient.render.showError("Not connected");
                 return false;
