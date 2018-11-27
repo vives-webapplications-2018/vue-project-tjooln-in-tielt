@@ -119,7 +119,7 @@ var websocketclient = {
             'topic': message.destinationName,
             'retained': message.retained,
             'qos': message.qos,
-            'payload': message.payloadString,
+            'payload': message.payloadString.substring(0, message.payloadString.indexOf('($clientId-')),
             'timestamp': moment(),
             'subscriptionId': subscription.id,
             'color': websocketclient.getColorForSubscription(subscription.id)
@@ -134,7 +134,7 @@ var websocketclient = {
         this.client.disconnect();
     },
 
-    'publish': function(topic, name, payload, qos, retain) {
+    'publish': function(topic, name, payload, qos, retain, clientid) {
         if (payload.trim() != '') {
             if (!websocketclient.connected) {
                 websocketclient.render.showError("Not connected");
@@ -145,11 +145,13 @@ var websocketclient = {
                 name = 'Guest'
             }
 
-            var message = new Messaging.Message(name + ": " + payload);
+            var idMessage = " ($" + clientid + ")";
+            var message = new Messaging.Message(name + ": " + payload + idMessage);
             message.destinationName = topic;
             message.qos = qos;
             message.retained = retain;
             this.client.send(message);
+
             websocketclient.render.hide('usrname');
             websocketclient.render.hide('sub');
             websocketclient.render.show('userInput');
