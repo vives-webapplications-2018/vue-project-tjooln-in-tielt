@@ -141,7 +141,7 @@ var websocketclient = {
                 return false;
             }
 
-            if (name.trim() == '') {
+            if (name == '') {
                 name = 'Guest'
             }
 
