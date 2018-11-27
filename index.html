@@ -74,7 +74,7 @@ limitations under the License.
                                 <input id="portInput" type="text" value="8000" />
                             </div>
 
-                            <div class="hide" class="large-4 columns">
+                            <div class="large-4 columns">
                                 <label>ClientID *</label>
                                 <input id="clientIdInput" type="text" />
                             </div>
@@ -169,7 +169,7 @@ limitations under the License.
                                         <input id="publishRetain" type="checkbox">
                                     </div>
                                     <div class="large-2 columns">
-                                        <a class="small button" id="publishButton" onclick="websocketclient.publish($('#subscribeTopic').val(),$('#name').val(),$('#publishPayload').val(),parseInt($('#publishQoSInput').val(),10),$('#publishRetain').is(':checked'));clearMessageBox();focusMessageBox();">Publish</a>
+                                        <a class="small button" id="publishButton" onclick="websocketclient.publish($('#subscribeTopic').val(),$('#name').val(),$('#publishPayload').val(),parseInt($('#publishQoSInput').val(),10),$('#publishRetain').is(':checked'),$('#clientIdInput').val());clearMessageBox();focusMessageBox();">Publish</a>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -282,7 +282,7 @@ limitations under the License.
                                         </select>
                                             </div>
                                             <div class="large-3 columns">
-                                                <a class="small button" id="subscribeButton" onclick="if(websocketclient.subscribe($('#subscribeTopic').val(),parseInt($('#QoSInput').val()),$('#colorChooser').val().substring(1))){$.fancybox.close();}">Create/join</a>
+                                                <a class="small button" id="subscribeButton" onclick="if(websocketclient.subscribe($('#subscribeTopic').val(),parseInt($('#QoSInput').val()),$('#colorChooser').val().substring(1))){$.fancybox.close();}; makeReadOnly();">Create/join</a>
                                             </div>
                                         </div>
                                         <div class="row large-12 columns">
@@ -394,6 +394,10 @@ limitations under the License.
 
         function focusMessageBox() {
             document.getElementById('publishPayload').focus();
+        }
+
+        function makeReadOnly() {
+            document.getElementById("name").readOnly = true;
         }
 
         document.getElementById("publishPayload")
