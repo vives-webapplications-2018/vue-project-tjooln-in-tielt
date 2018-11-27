@@ -175,6 +175,7 @@ var websocketclient = {
             websocketclient.render.showError('You are already subscribed to this topic');
             return false;
         }
+
         websocketclient.subscriptions = [];
         websocketclient.render.clearSubscriptions();
         this.client.subscribe(topic, { qos: qosNr });
