@@ -20,6 +20,14 @@ function Mqtt(broker, initialTopic, messageHandler){
             }
         });
     };
+
+    this.client.on('connect', function () {
+        self.client.subscribe('Skribble.bert', function (err) {
+            if (!err) {
+                self.subscribeTopic(self.initialTopic);
+            }
+        });
+    });
 }
 
 module.exports = Mqtt;
