@@ -10,6 +10,7 @@
   "author": "Robin Spruytte",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "express-public-ip": "^1.0.1"
   }
 }
