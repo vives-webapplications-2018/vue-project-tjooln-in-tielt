@@ -28,9 +28,15 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.listen(3000,"0.0.0.0");                         //start listening on port 3000
 
 app.get('/', function (req, res) {
-    testDbFunctions();
-    res.send("Hello there your precense was noted");
+    testDbFunctions(req.ip);
+    res.send("Hello there your precense was noted " + req.ip);
 });
+
+app.get('/returnImage', function (req, res) {
+    testDbFunctions(req.ip);
+    res.send("Hello there your precense was noted " + req.ip);
+});
+
 
 //middleware
 
@@ -46,10 +52,10 @@ var testpackage = {
     description: "hey i just posted a message to the database"
 };
 
-function testDbFunctions() {
+function testDbFunctions(ip) {
     db.setTable("test_table");
-    //db.query('INSERT INTO test_table (description) VALUES ("remote client connected")');
-    db.insert(testpackage);
+    db.query('INSERT INTO test_table (description) VALUES ("remote client' + ip + 'connected")');
+    //db.insert(testpackage);
     //db.delete(22);
     //db.getRecord(23);
     //db.wipe();
