@@ -28,10 +28,25 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.listen(3000,"0.0.0.0");                         //start listening on port 3000
 
 app.get('/', function (req, res) {
-    Foo();
+    testDbFunctions();
     res.send("Hello there your precense was noted");
 });
 
 //middleware
 
 app.use('/', express.static('public'));             //serves static files in public dir
+
+//server test functions
+
+var testpackage = {
+    description: "hey i just posted a message to the database"
+};
+
+function testDbFunctions() {
+    db.setTable("test_table");
+    //db.query('INSERT INTO test_table (description) VALUES ("remote client connected")');
+    db.insert(testpackage);
+    //db.delete(22);
+    //db.getRecord(23);
+    //db.wipe();
+}
