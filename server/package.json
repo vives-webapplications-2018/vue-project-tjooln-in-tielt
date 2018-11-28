@@ -8,8 +8,5 @@
     "start": "node server.js"
   },
   "author": "Robin Spruytte",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+  "license": "MIT"
 }
