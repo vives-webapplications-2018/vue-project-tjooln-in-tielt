@@ -27,6 +27,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.listen(3000,"0.0.0.0");                         //start listening on port 3000
 
+app.get('/', function (req, res) {
+    Foo();
+    res.send("Hello there your precense was noted");
+});
+
 //middleware
 
 app.use('/', express.static('public'));             //serves static files in public dir
