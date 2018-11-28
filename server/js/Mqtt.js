@@ -12,6 +12,14 @@ function Mqtt(broker, initialTopic, messageHandler){
             client.end();
         }
     };
+
+    this.subscribeTopic = function(topicName){
+        self.client.subscribe(topicName, function (err){
+            if(!err){
+                self.client.publish(topicName, 'Scribble server is listening to ' + topicName);
+            }
+        });
+    };
 }
 
 module.exports = Mqtt;
