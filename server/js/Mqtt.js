@@ -7,6 +7,11 @@ function Mqtt(broker, initialTopic, messageHandler){
     this.connected = false;
     this.messageHandler = messageHandler;
     
+    this.end = function () {
+        if (this.connected) {
+            client.end();
+        }
+    };
 }
 
 module.exports = Mqtt;
