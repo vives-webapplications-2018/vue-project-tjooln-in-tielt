@@ -38,6 +38,10 @@ app.use('/', express.static('public'));             //serves static files in pub
 
 //server test functions
 
+function messageHandler(topic, message){
+    console.log('i received a message on ' + topic + ' with content ' + message);
+}
+
 var testpackage = {
     description: "hey i just posted a message to the database"
 };
