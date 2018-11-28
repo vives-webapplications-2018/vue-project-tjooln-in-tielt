@@ -28,6 +28,12 @@ function Mqtt(broker, initialTopic, messageHandler){
             }
         });
     });
+
+    this.client.on('message', (topic, message) => {
+        // message is Buffer
+        this.messageHandler(topic, message);
+        console.log(message.toString());
+    });
 }
 
 module.exports = Mqtt;
