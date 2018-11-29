@@ -23,6 +23,10 @@ function Lobby(lobbyName, maxPlayers){      //expects string:lobbyName, int:maxP
             return false;
         }
     };
+
+    this.isFull = function() {      //returns true if maxPlayers has been reached else returns false
+        return (self.playerList.length + 1 < maxPlayers);
+    };
 }
 
 module.exports = Lobby;
