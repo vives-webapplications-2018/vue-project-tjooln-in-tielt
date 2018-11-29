@@ -14,14 +14,18 @@ exports.setTable = table => {                    //expects string table, changes
     tableName = table;
 };
 
-exports.query = query => {                       //expects a valid mysql query in string format
+exports.query = (query, callback = function(rows){return rows;}) => {   //expects a valid mysql query in string format
     pool.getConnection((err, connection) => {
         connection.query(query, (err, rows) => {
             connection.release();
             if (err) throw err;
             console.log(`query ${query} sent`);
             console.log(rows);
-            return rows;
+            if (callback != undefined) {
+                callback(rows);
+            } else {
+                return rows;
+            }
         });
     });
 };
@@ -30,7 +34,7 @@ exports.insert = values => {                     //expects an object with key va
     let queryStart = `INSERT INTO ${tableName} (`;
     let queryEnd = ') VALUES (';
 
-    for (let [key, value, index] of Object.entries(values)) {
+    for (let [key, value] of Object.entries(values)) {
         queryStart = queryStart.concat(key);
         if (typeof value == "string") {
             queryEnd = queryEnd.concat(`"${value}"`);
@@ -38,7 +42,7 @@ exports.insert = values => {                     //expects an object with key va
             queryEnd = queryEnd.concat(value);
         }
 
-        if (index != values.length) {
+        if (Object.keys(values).indexOf(key) + 1 != Object.keys(values).length) {
             queryStart = queryStart.concat(',');
             queryEnd = queryEnd.concat(',');
         } else {
@@ -51,12 +55,12 @@ exports.insert = values => {                     //expects an object with key va
     exports.query(query);
 };
 
-exports.delete = id => {                       //expects an integer id that refers to the table entry that will be deleted
-    exports.query(`DELETE FROM ${tableName} WHERE id = ${id}`);
+exports.delete = (id, callback = undefined) => {                       //expects an integer id that refers to the table entry that will be deleted
+    exports.query(`DELETE FROM ${tableName} WHERE id = ${id}`, callback);
     console.log(`deleted entry ${id} from ${tableName}`);
 };
 
-exports.wipe = () => {                           //wipes all the entries in the table
+exports.wipe = (callback = undefined) => {                           //wipes all the entries in the table
     exports.query(`DELETE FROM ${tableName}`);
     console.log(`wiped table ${tableName}`);
 };
@@ -69,6 +73,5 @@ exports.getRandomRecord = (callback = undefined) => {
     exports.query(`SELECT * FROM ${tableName} ORDER BY rand() LIMIT 1`, callback);
 };
 
-
-exports.getRecord = id => //expects an integer id, will return the record from the currently selected table that corresponds to this id
-exports.query(`SELECT * FROM ${tableName} WHERE id = ${id}`);
+exports.getRecord = (id, callback = undefined) => //expects an integer id, will return the record from the currently selected table that corresponds to this id
+exports.query(`SELECT * FROM ${tableName} WHERE id = ${id}`, callback);
