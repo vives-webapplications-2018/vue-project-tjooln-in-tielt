@@ -61,5 +61,9 @@ exports.wipe = () => {                           //wipes all the entries in the 
     console.log(`wiped table ${tableName}`);
 };
 
+exports.resetIdCounter = (callback = undefined)=> {                  //resets the id's inside the selected table
+    exports.query(`ALTER TABLE ${tableName} AUTO_INCREMENT = 1`,callback);
+};
+
 exports.getRecord = id => //expects an integer id, will return the record from the currently selected table that corresponds to this id
 exports.query(`SELECT * FROM ${tableName} WHERE id = ${id}`);
