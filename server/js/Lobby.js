@@ -14,6 +14,15 @@ function Lobby(lobbyName, maxPlayers){      //expects string:lobbyName, int:maxP
             return false;
         }
     };
+
+    this.removePlayer = function(playerName) {      //expects string playerName, removes player from playerList if not null, returns true on sucsessfull deletion else false 
+        if (self.playerList.includes(playerName)){
+            self.playerList.remove(self.playerList.indexOf(playerName));
+            return true;
+        } else {
+            return false;
+        }
+    };
 }
 
 module.exports = Lobby;
