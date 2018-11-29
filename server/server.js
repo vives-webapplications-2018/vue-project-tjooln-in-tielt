@@ -45,10 +45,6 @@ app.use('/', express.static('public'));             //serves static files in pub
 
 //server test functions
 
-function messageHandler(topic, message){
-    console.log('i received a message on ' + topic + ' with content ' + message);
-}
-
 var testpackage = {
     description: "hey i just posted a message to the database"
 };
@@ -60,4 +56,19 @@ function testDbFunctions(ip) {
     //db.delete(22);
     //db.getRecord(23);
     //db.wipe();
+}
+
+function  setupDb() {
+    fs.getFolderContent("./public/images", function(err, images){
+        db.setTable("images");
+        db.wipe();
+        db.resetIdCounter( function(){
+            for (let index in images) {
+                db.insert({
+                    filename: images[index],
+                    word: images[index].split(".")[0]
+                });
+            }
+        });
+    });
 }
