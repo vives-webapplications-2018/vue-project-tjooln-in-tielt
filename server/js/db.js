@@ -65,5 +65,10 @@ exports.resetIdCounter = (callback = undefined)=> {                  //resets th
     exports.query(`ALTER TABLE ${tableName} AUTO_INCREMENT = 1`,callback);
 };
 
+exports.getRandomRecord = (callback = undefined) => {
+    exports.query(`SELECT * FROM ${tableName} ORDER BY rand() LIMIT 1`, callback);
+};
+
+
 exports.getRecord = id => //expects an integer id, will return the record from the currently selected table that corresponds to this id
 exports.query(`SELECT * FROM ${tableName} WHERE id = ${id}`);
