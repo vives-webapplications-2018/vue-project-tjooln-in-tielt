@@ -11,11 +11,11 @@ const path = require('path');
 const app = express();
 
 //responsive requires (server to client communication)
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var expressPublicIp = require('express-public-ip');  //needed to make server public
-var LobbyList = new LobbyList('lobby', 100);
-var messageController = new MessageController('mqtt://broker.mqttdashboard.com', 'scribble/lobby', "!", db, LobbyList);
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
+let expressPublicIp = require('express-public-ip');  //needed to make server public
+let lobbyList = new LobbyList('lobby', 100);
+let messageController = new MessageController('mqtt://broker.mqttdashboard.com', 'scribble/lobby', "!", db, LobbyList);
 
 app.enable('trust proxy');
  
