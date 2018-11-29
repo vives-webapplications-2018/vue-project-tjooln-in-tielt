@@ -1,8 +1,12 @@
+// NPM START TO START SERVER //
+
 //server requires
 const express = require('express');
-var Mqtt = require('./js/Mqtt.js');
-var db = require('./js/db.js');
-var path = require('path');
+const fs = require('./js/FsManipulator.js');
+const LobbyList = require('./js/LobbyList.js');
+const MessageController = require('./js/MessageController.js');
+const db = require('./js/db.js');
+const path = require('path');
 
 const app = express();
 const mqtt = new Mqtt('mqtt://broker.mqttdashboard.com','scribble/lobby', messageHandler);
