@@ -1,0 +1,9 @@
+CREATE DATABASE scribble;
+use scribble;
+
+CREATE TABLE images(
+	id int NOT NULL AUTO_INCREMENT,
+	filename VARCHAR(255) NOT NULL,
+	word VARCHAR(255) NOT NULL,
+	PRIMARY KEY(id)
+);
