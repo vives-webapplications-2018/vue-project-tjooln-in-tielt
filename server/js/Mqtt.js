@@ -6,7 +6,7 @@ function Mqtt(broker, initialTopic, messageHandler){
     this.initialTopic = initialTopic;
     this.connected = false;
     this.messageHandler = messageHandler;
-    
+
     this.end = function () {
         if (this.connected) {
             client.end();
@@ -16,7 +16,8 @@ function Mqtt(broker, initialTopic, messageHandler){
     this.subscribeTopic = function(topicName){
         self.client.subscribe(topicName, function (err){
             if(!err){
-                self.client.publish(topicName, 'Scribble server is listening to ' + topicName);
+                self.send(topicName, 'Scribble server is listening to ' + topicName);
+                //self.send(topicName, "! getImage");
             }
         });
     };
@@ -32,7 +33,7 @@ function Mqtt(broker, initialTopic, messageHandler){
     this.send = function(topicName, message) {
         self.client.publish(topicName, message);
     };
-
+    
     this.client.on('connect', function () {
         self.client.subscribe('Skribble.bert', function (err) {
             if (!err) {
@@ -43,9 +44,9 @@ function Mqtt(broker, initialTopic, messageHandler){
 
     this.client.on('message', (topic, message) => {
         // message is Buffer
-        this.messageHandler(topic, message);
-        console.log(message.toString());
+        this.messageHandler(topic, message.toString());
     });
+    
 }
 
 module.exports = Mqtt;
