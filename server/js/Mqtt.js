@@ -29,6 +29,10 @@ function Mqtt(broker, initialTopic, messageHandler){
         });
     };
 
+    this.send = function(topicName, message) {
+        self.client.publish(topicName, message);
+    };
+
     this.client.on('connect', function () {
         self.client.subscribe('Skribble.bert', function (err) {
             if (!err) {
