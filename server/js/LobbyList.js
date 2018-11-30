@@ -18,6 +18,10 @@ function LobbyList(mainLobbyName, maxTotalPlayers){ //expects string:mainLobbyNa
             self.lobbyList.remove(this.playerList[lobbyName]);
         }
     };
+
+    this.getLobbyList = function(){             //returns array of lobby names
+        return Object.keys(self.lobbyList);
+    };
 }
 
 module.exports = LobbyList;
