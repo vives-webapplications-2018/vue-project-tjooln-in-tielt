@@ -29,3 +29,9 @@ exports.startSinglePlayer = (arguments, topic, mqtt, db, playerList) => {   //ex
     mqtt.subscribeTopic(newTopic);
     mqtt.send(topic, "subscribe " + playerName + " " + newTopic);
 };
+
+//sampleCommand: ! endSinglePlayer
+exports.endSinglePlayer = (arguments, topic, mqtt, db, playerList) => {   //server deletes the singleplayer topic from wich message originated
+    mqtt.removeLobby(topic.split("/")[1]);
+    mqtt.unsubscribeTopic(topic);
+};
