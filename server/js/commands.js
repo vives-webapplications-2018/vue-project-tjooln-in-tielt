@@ -35,3 +35,10 @@ exports.endSinglePlayer = (arguments, topic, mqtt, db, playerList) => {   //serv
     mqtt.removeLobby(topic.split("/")[1]);
     mqtt.unsubscribeTopic(topic);
 };
+
+//sampleCommand: ! getImage
+exports.getImage = (arguments, topic, mqtt, db, playerList) => {  //server sends a random word and the corresponding filename back
+    let result = db.getRandomRecord(function(result){
+        mqtt.send(topic, "requestImage " + result[0].filename + " " + result[0].word);
+    });
+};
