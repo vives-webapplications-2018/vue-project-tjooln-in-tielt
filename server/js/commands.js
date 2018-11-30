@@ -18,3 +18,14 @@ exports.addPlayer = (arguments, topic, mqtt, db, playerList) => {   //expects st
         mqtt.send(topic, "error unknown_lobby_" + lobby);
     }
 };
+
+//sampleCommand: ! startSinglePlayer playerName
+exports.startSinglePlayer = (arguments, topic, mqtt, db, playerList) => {   //expects string:playerName, server creates new topic and lobby for playerName and sends a message to the client to join;
+    let playerName = arguments[1];
+    let lobby = playerName + "_singleplayer";
+    let newTopic = "scribble/" + lobby;
+    playerList.addLobby(lobby, 1);
+    playerList.lobbyList[lobby].addPlayer(playerName);
+    mqtt.subscribeTopic(newTopic);
+    mqtt.send(topic, "subscribe " + playerName + " " + newTopic);
+};
