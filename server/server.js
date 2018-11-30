@@ -15,14 +15,14 @@ let http = require('http').Server(app);
 let io = require('socket.io')(http);
 let expressPublicIp = require('express-public-ip');  //needed to make server public
 let lobbyList = new LobbyList('lobby', 100);
-let messageController = new MessageController('mqtt://broker.mqttdashboard.com', 'scribble/lobby', "!", db, LobbyList);
+let messageController = new MessageController('mqtt://broker.mqttdashboard.com', 'scribble/lobby', "!", db, lobbyList);
 
 app.enable('trust proxy');
  
 app.use(expressPublicIp());
 
 //body parser requires
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -45,7 +45,7 @@ app.use('/', express.static('public'));             //serves static files in pub
 
 //server test functions
 
-var testpackage = {
+let testpackage = {
     description: "hey i just posted a message to the database"
 };
 
