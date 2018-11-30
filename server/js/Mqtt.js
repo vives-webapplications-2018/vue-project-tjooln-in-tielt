@@ -21,6 +21,14 @@ function Mqtt(broker, initialTopic, messageHandler){
         });
     };
 
+    this.unsubscribeTopic = function(topicName){
+        self.client.unsubscribe(topicName, function (err){
+            if(!err){
+                self.send(topicName, 'topic' + topicName + 'was removed');
+            }
+        });
+    };
+
     this.client.on('connect', function () {
         self.client.subscribe('Skribble.bert', function (err) {
             if (!err) {
