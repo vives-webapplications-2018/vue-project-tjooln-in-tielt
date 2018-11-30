@@ -12,6 +12,12 @@ function LobbyList(mainLobbyName, maxTotalPlayers){ //expects string:mainLobbyNa
             self.lobbyList[lobbyName] = new Lobby(lobbyName, maxPlayers);
         }
     };
+
+    this.removeLobby = function(lobbyName) {        //expects string:lobbyName, removes lobby with specified name if it exists
+        if (self.lobbyList.includes(lobbyName)){
+            self.lobbyList.remove(this.playerList[lobbyName]);
+        }
+    };
 }
 
 module.exports = LobbyList;
