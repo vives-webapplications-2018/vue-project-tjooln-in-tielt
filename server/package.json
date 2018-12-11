@@ -1,20 +1,35 @@
 {
-  "name": "scribble-server",
-  "version": "1.0.0",
-  "description": "the server side logic for scribble",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "Robin Spruytte",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.16.4",
-    "express-public-ip": "^1.0.1",
-    "mqtt": "^2.18.8"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.7"
-  }
+    "name": "front-end-tester",
+    "version": "1.0.0",
+    "description": "a test app for scribble",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "author": "Robin Spruytte",
+    "license": "MIT",
+    "dependencies": {
+        "electron": "^3.0.10",
+        "mqtt": "^2.18.8"
+    },
+    "name": "scribble-server",
+    "version": "1.0.0",
+    "description": "the server side logic for scribble",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "author": "Robin Spruytte",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.16.4",
+        "express-public-ip": "^1.0.1",
+        "mqtt": "^2.18.8",
+        "mysql": "^2.16.0",
+        "socket.io": "^2.2.0"
+    },
+    "devDependencies": {
+        "nodemon": "^1.18.7"
+    }
 }
