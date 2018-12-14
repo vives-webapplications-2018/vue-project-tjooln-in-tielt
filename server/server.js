@@ -15,7 +15,7 @@ let http = require('http').Server(app);
 let io = require('socket.io')(http);
 let expressPublicIp = require('express-public-ip');  //needed to make server public
 let lobbyList = new LobbyList('lobby', 100);
-let messageController = new MessageController('mqtt://broker.mqttdashboard.com', 'scribble/lobby', "!", db, lobbyList);
+let messageController = new MessageController('ws://iot.eclipse.org/ws', 'scribble/lobby', "!", db, lobbyList);
 
 app.enable('trust proxy');
  
